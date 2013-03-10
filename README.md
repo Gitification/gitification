@@ -8,5 +8,7 @@ This application uses a Javascript stack and has been developed for the lesson O
 
 ## Install
 Download and install [node.js](http://nodejs.org/download/)
+
     npm install
+    
     node server.js
