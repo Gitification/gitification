@@ -7,7 +7,9 @@ API v0.0.1
 
 --
 Applications
-The following is a section of resources related to th application
+The following is a section of resources related to th application.
+
+(Possible: list, register)
 --
 Lists applications registered on the server.
 
@@ -42,15 +44,265 @@ Error, you are not allowed to request this resource.
 Registers a new application
 POST /applications
 > Content-Type: application/json
-{ "product":"1AB23ORM", "quantity": 2 }
+{TODO}
 < 201
 < Content-Type: application/json
-{ "status": "created", "url": "/shopping-cart/2" }
+{TODO}
 
+--
+Leaderboard
+(Possible: list)
 
--- Payment Resources --
-This resource allows you to submit payment information to process your *shopping cart* items
-POST /payment
-{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
+TODO
+--
+TODO
+GET /applications/:appid/leaderboard
 < 200
-{ "receipt": "/payment/receipt/1" }
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+--
+Users
+(Possible: list, specific, add, modify, delete)
+
+TODO
+--
+TODO
+GET /applications/:appid/users
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+GET /applications/:appid/users/:userid
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+GET /applications/:appid/users/:userid/badges
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+POST /applications/:appid/users
+> Content-type: application/json
+{TODO}
+< 201
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
++++++
+< 405
+< Content-Type: text/plain
+{TODO}
+
+TODO
+PUT /applications/:appid/users/:userid
+{TODO}
+< 204
++++++
+< 404
+< Content-Type: text/plain
+{TODO}
+
+TODO
+DELETE /applications/:appid/users/:userid
+< 204
++++++
+< 404
+< Content-Type: text/plain
+{TODO}
+
+--
+Events
+(Possible: list, specific, add)
+
+TODO
+--
+
+TODO
+GET /applications/:appid/events
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+GET /applications/:appid/events/:eventid
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+POST /applications/:appid/events
+< 201
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+--
+Triggers
+(Possible: list, specific, add)
+
+TODO (Event Type)
+--
+
+TODO
+GET /applications/:appid/triggers
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+GET /applications/:appid/triggers/:triggerid
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+POST /applications/:appid/triggers
+< 201
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+--
+Rules
+(Possible: list, specific, add, modify?, delete?)
+
+TODO
+--
+
+TODO
+GET /applications/:appid/rules
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+GET /applications/:appid/rules/:ruleid
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+POST /applications/:appid/rules
+< 201
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+PUT /applications/:appid/rules/:ruleid
+< 204
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+DELETE /applications/:appid/rules/:ruleid
+< 204
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+--
+Badges
+(Possible: list, specific, add, modify?)
+
+TODO
+--
+
+TODO
+GET /applications/:appid/badges
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+GET /applications/:appid/badges/:badgeid
+< 200
+< Content-Type: application/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+POST /applications/:appid/badges
+< 201
+< Content-Type: applications/json
+{TODO}
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
+TODO
+PUT /applications/:appid/badges/:badgeid
+< 204
++++++
+< 401
+< Content-Type: text/plain
+{TODO}
+
