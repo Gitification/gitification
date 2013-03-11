@@ -3,51 +3,97 @@ HOST: http://random-gamification.com
 --- Magnificent Monocle Gamification Provider ---
 ---
 API v0.0.1
+
+Star (*) indicates a mandatory request parameter.
 ---
 
 --
 Applications
-The following is a blu
+The following section relates to the application resource.
 
 (Possible: list, register)
 --
-Lists applications registered on the server.
+Get applications registered on the server.
 
-This function may only be used by API_KEY for Super-Admin console.
+*Resource may only be used by API_KEY for Super-Admin console.*
 GET /applications
-> Timestamp: timestamp
-> Signature: signature
-> Signature-Method: HMAC-SHA1
-> Authorization: api_key
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
- [
-  {
-   "application":"name",
-   "site":"site",
-   "callback":"callback",
-   "created":"date,
-   "statistics":
-    {
-     "user_count":users,
-     "event_count":events
-    }
-  }
- ]
+	[
+		{
+			"application_id":<OID>,
+			"site":<String>,
+			"callback":<String>,
+			"createdAt":<Date>,
+			"admin":<String>,
+			"statistics":
+			{
+				"user_count":<Integer>,
+				"event_count":<Integer>,
+				"badge_count":<Integer>,
+				"rule_count":<Integer>
+			}
+		}
+	]
 }
 +++++
 < 401
-< Content-Type: text/plain
-Error, you are not allowed to request this resource.
+< Content-Type: application/json
+{ "error":"error", "stats":"Access denied." }
 
-Registers a new application
+Get application information.
+GET /applications/:appid
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{
+	"application_id":<OID>,
+	"site":<String>,
+	"callback":<String>,
+	"createdAt":<Date>,
+	"admin":<String>,
+	"statistics":
+	{
+		"user_count":<Integer>,
+		"event_count":<Integer>
+		"badge_count":<Integer>,
+		"rule_count":<Integer>
+	}
+}
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Resource not found." }
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
+
+Register a new application
 POST /applications
 > Content-Type: application/json
-{TODO}
+{
+	"site":<String>,
+	"callback":<String>,
+	"admin":<String>
+}
 < 201
 < Content-Type: application/json
-{TODO}
+{ 
+	"status":"success", 
+	"message":"Successfully registered.",
+	"payload":
+	{
+		"api_key":<String>,
+		"secret_key":<String>
+	}
+}
++++++
+< 409
+< Content-Type: application/json
+{ "status":"error", "message":"Application cannot be created." }
 
 --
 Leaderboard
@@ -55,8 +101,10 @@ Leaderboard
 
 TODO
 --
+
 TODO
 GET /applications/:appid/leaderboard
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {TODO}
