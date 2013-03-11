@@ -182,79 +182,167 @@ DELETE /applications/:appid/users/:userid
 < Content-Type: text/plain
 {TODO}
 
+
 --
 Events
-(Possible: list, specific, add)
 
-TODO
+All operations related to the event management are in this section. Everything that has to be monitored by the gamification platform is recorded as an event and has to be posted to the gamificatio API.
+
+(Possible: list, specific, add)
 --
 
-TODO
+Gets the list of all events registered on the gamification server for the appid.
+
+This function may only be used by API_KEY for Super-Admin console.
+
 GET /applications/:appid/events
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
 < 200
 < Content-Type: application/json
-{TODO}
+{
+ [
+  {
+   "event_id":"id",
+   "type":"type",
+   "user":"user",
+   "issued":"date"
+  }
+ ]
+}
 +++++
 < 401
 < Content-Type: text/plain
-{TODO}
+{ "status":"error", "message":"Access denied" }
 
-TODO
+Get detailed information about a specific event identified by eventid
 GET /applications/:appid/events/:eventid
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
 < 200
 < Content-Type: application/json
-{TODO}
+{
+ "event_id":"id",
+ "type":"type",
+ "user":"user",
+ "issued":"date"
+}
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Ressource not found" }
 
-TODO
+
+Register a new event on the gamification platform for your application
 POST /applications/:appid/events
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
+> Content-Type: application/json
+{
+ "type":"type",
+ "user":"user"
+}
 < 201
 < Content-Type: application/json
-{TODO}
+{ "status":"success", "message":"Successfully added" }
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
+
+
+
+
 
 --
-Triggers
+Event Types
+
+All events that are recorded by the gamification API are associated with a type. The types can be defined by the application using the API with the related API calls. Then event types will be used in rules to define the conditions needed to obtain a badge.
+
 (Possible: list, specific, add)
-
-TODO (Event Type)
 --
 
-TODO
-GET /applications/:appid/triggers
+
+Get the list of all types define for this application id.
+GET /applications/:appid/types
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
 < 200
 < Content-Type: application/json
-{TODO}
+{
+ [
+  {
+   "type_id":"id",
+   "name":"name"
+  }
+ ]
+}
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
 
-TODO
-GET /applications/:appid/triggers/:triggerid
+
+Get information about a specific type id
+GET /applications/:appid/types/:type_id
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
 < 200
 < Content-Type: application/json
-{TODO}
+{
+ [
+  {
+   "type_id":"id",
+   "name":"name"
+  }
+ ]
+}
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Ressource not found" }
 
-TODO
-POST /applications/:appid/triggers
+
+Add a new event type in the application
+POST /applications/:appid/types
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
+> Content-Type: application/json
+{
+ [
+  {
+   "name":"name"
+  }
+ ]
+}
 < 201
 < Content-Type: application/json
-{TODO}
+{ "status":"success", "message":"Successfully added" }
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
+
 
 --
 Rules
