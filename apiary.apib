@@ -71,28 +71,61 @@ Users
 
 TODO
 --
-TODO
+Get the list of all users in the applications
 GET /applications/:appid/users
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
 < 200
 < Content-Type: application/json
-{TODO}
+{
+  [
+    {
+    "user_id":"id",
+    "login":"login",
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "email":"email"
+    }
+  ]
+}
 +++++
 < 401
 < Content-Type: text/plain
 {TODO}
 
-TODO
+Get the informations about a specific user
 GET /applications/:appid/users/:userid
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
 < 200
 < Content-Type: application/json
-{TODO}
+{
+ "user_id":"id",
+ "login":"login",
+ "firstname":"firstname",
+ "lastname":"lastname",
+ "email":"email"
+}
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Ressource not found" }
 
-TODO
+
+Get all badges of a specific user
 GET /applications/:appid/users/:userid/badges
+> Timestamp: timestamp
+> Signature: signature
+> Signature-Method: HMAC-SHA1
+> Authorization: api_key
 < 200
 < Content-Type: application/json
 {TODO}
@@ -100,8 +133,12 @@ GET /applications/:appid/users/:userid/badges
 < 401
 < Content-Type: text/plain
 {TODO}
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Ressource not found" }
 
-TODO
+Add a new user in the application
 POST /applications/:appid/users
 > Content-type: application/json
 {TODO}
@@ -117,7 +154,7 @@ POST /applications/:appid/users
 < Content-Type: text/plain
 {TODO}
 
-TODO
+Update the informations of a users
 PUT /applications/:appid/users/:userid
 {TODO}
 < 204
@@ -126,7 +163,7 @@ PUT /applications/:appid/users/:userid
 < Content-Type: text/plain
 {TODO}
 
-TODO
+Delete a user from the application
 DELETE /applications/:appid/users/:userid
 < 204
 +++++
