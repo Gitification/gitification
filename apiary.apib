@@ -416,99 +416,229 @@ POST /applications/:appid/types
 
 --
 Rules
-(Possible: list, specific, add, modify?, delete?)
+A rule define when a badge should be granted to an user. A rule is defined by a list of EventType and threshold.
 
-TODO
+(Possible: list, specific, add, modify, delete)
 --
+Get rules defined for the given application
 
-TODO
-GET /applications/:appid/rules
+GET /applications/{appid}/rules
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
-{TODO}
+{
+	[
+		{
+			"rule_id":<OID>,
+			"name":<String>,
+			"badge":<Badge>,
+			"event_types":
+			{
+				[
+					"event_type":<EventType>,
+					"threshold":<Integer>
+				]
+			}
+		}
+	]
+}
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
 
-TODO
-GET /applications/:appid/rules/:ruleid
+Get rule information
+GET /applications/{appid}/rules/{ruleid}
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
-{TODO}
+{
+	"rule_id":<OID>,
+	"name":<String>,
+	"badge":<Badge>,
+	"event_types":
+	{
+		[
+			"event_type":<EventType>,
+			"threshold":<Integer>
+		]
+	}
+}
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Resource not found." }
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
 
-TODO
-POST /applications/:appid/rules
+Add a new rule for the given application
+POST /applications/{appid}/rules
+> Authorization: $API_KEY
+> Content-Type: application/json
+{
+	"name":<String>,
+	"badge":<Badge>,
+	"event_types":
+	{
+		[
+			"event_type":<EventType>,
+			"threshold":<Integer>
+		]
+	}
+}
 < 201
 < Content-Type: application/json
-{TODO}
+{ 
+	"status":"success", 
+	"message":"Rule successfully registered.",
+	"payload":
+	{
+		"rule_id":<OID>,
+	}
+}
 +++++
-< 401
-< Content-Type: text/plain
-{TODO}
+< 409
+< Content-Type: application/json
+{ "status":"error", "message":"Rule cannot be created." }
 
-TODO
-PUT /applications/:appid/rules/:ruleid
-< 204
+Update the information of the given rule
+PUT /applications/{appid}/rules/{ruleid}
+> Authorization: $API_KEY
+{
+	"rule_id":<OID>,
+	"name":<String>,
+	"badge":<Badge>,
+	"event_types":
+	{
+		[
+			"event_type":<EventType>,
+			"threshold":<Integer>
+		]
+	}
+}
+< 200
+< Content-Type: text/plain
+{ "status":"OK", "message":"Rule has been updated" }
 +++++
 < 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Ressource not found" }
++++++
+< 405
 < Content-Type: text/plain
-{TODO}
+{ "status":"error", "message":"Method Not Allowed" }
 
-TODO
-DELETE /applications/:appid/rules/:ruleid
-< 204
+
+Delete a rule from the given application
+DELETE /applications/{appid}/rules/{ruleid}
+> Authorization: $API_KEY
+< 200
+< Content-Type: text/plain
+{ "status":"OK", "message":"Rule has been deleted" }
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Ressource not found" }
 
 --
 Badges
-(Possible: list, specific, add, modify?)
+A badge is given to an user for awesomeness
 
-TODO
+(Possible: list, specific, add)
 --
 
-TODO
-GET /applications/:appid/badges
+Get badges for the given application
+GET /applications/{appid}/badges
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
-{TODO}
+{
+	[
+		{
+			"badge_id":<OID>,
+			"name":<String>,
+			"icon":<String>
+		}
+	]
+}
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
 
-TODO
-GET /applications/:appid/badges/:badgeid
+Get information of the given badge
+GET /applications/{appid}/badges/{badgeid}
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
-{TODO}
+{
+	"badge_id":<OID>,
+	"name":<String>,
+	"icon":<String>
+}
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Resource not found." }
 +++++
 < 401
-< Content-Type: text/plain
-{TODO}
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
 
-TODO
-POST /applications/:appid/badges
+Add a new badge for the given application
+POST /applications/{appid}/badges
+> Authorization: $API_KEY
+> Content-Type: application/json
+{
+	"name":<String>,
+	"icon":<String>
+}
 < 201
-< Content-Type: applications/json
-{TODO}
+< Content-Type: application/json
+{ 
+	"status":"success", 
+	"message":"Badge successfully registered.",
+	"payload":
+	{
+		"badge_id":<OID>,
+	}
+}
 +++++
-< 401
-< Content-Type: text/plain
-{TODO}
+< 409
+< Content-Type: application/json
+{ "status":"error", "message":"Rule cannot be created." }
 
-TODO
-PUT /applications/:appid/badges/:badgeid
-< 204
+Update a badge
+PUT /applications/{appid}/badges/{badgeid}
+> Authorization: $API_KEY
+{
+	"badge_id":<OID>,
+	"name":<String>,
+	"icon":<String>
+}
+< 200
+< Content-Type: text/plain
+{ "status":"OK", "message":"Badge has been updated" }
 +++++
 < 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied" }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Ressource not found" }
++++++
+< 405
 < Content-Type: text/plain
-{TODO}
+{ "status":"error", "message":"Method Not Allowed" }
 
