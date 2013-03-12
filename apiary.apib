@@ -224,7 +224,7 @@ PUT /applications/:appid/users/:userid
 }
 < 200
 < Content-Type: text/plain
-{ "status":"error", "message":"User was updated" }
+{ "status":"OK", "message":"User was updated" }
 +++++
 < 401
 < Content-Type: application/json
@@ -241,7 +241,9 @@ PUT /applications/:appid/users/:userid
 Delete a user from the application
 DELETE /applications/:appid/users/:userid
 > Authorization: $API_KEY
-< 204
+< 200
+< Content-Type: text/plain
+{ "status":"OK", "message":"User was deleted" }
 +++++
 < 401
 < Content-Type: application/json
