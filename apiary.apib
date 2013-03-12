@@ -263,15 +263,10 @@ All operations related to the event management are in this section. Everything t
 (Possible: list, specific, add)
 --
 
+
 Gets the list of all events registered on the gamification server for the appid.
-
-This function may only be used by API_KEY for Super-Admin console.
-
 GET /applications/:appid/events
-> Timestamp: timestamp
-> Signature: signature
-> Signature-Method: HMAC-SHA1
-> Authorization: api_key
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
@@ -289,12 +284,10 @@ GET /applications/:appid/events
 < Content-Type: text/plain
 { "status":"error", "message":"Access denied" }
 
+
 Get detailed information about a specific event identified by eventid
 GET /applications/:appid/events/:eventid
-> Timestamp: timestamp
-> Signature: signature
-> Signature-Method: HMAC-SHA1
-> Authorization: api_key
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
@@ -315,10 +308,7 @@ GET /applications/:appid/events/:eventid
 
 Register a new event on the gamification platform for your application
 POST /applications/:appid/events
-> Timestamp: timestamp
-> Signature: signature
-> Signature-Method: HMAC-SHA1
-> Authorization: api_key
+> Authorization: $API_KEY
 > Content-Type: application/json
 {
  "type":"type",
@@ -347,10 +337,7 @@ All events that are recorded by the gamification API are associated with a type.
 
 Get the list of all types define for this application id.
 GET /applications/:appid/types
-> Timestamp: timestamp
-> Signature: signature
-> Signature-Method: HMAC-SHA1
-> Authorization: api_key
+> Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
@@ -395,10 +382,7 @@ GET /applications/:appid/types/:type_id
 
 Add a new event type in the application
 POST /applications/:appid/types
-> Timestamp: timestamp
-> Signature: signature
-> Signature-Method: HMAC-SHA1
-> Authorization: api_key
+> Authorization: $API_KEY
 > Content-Type: application/json
 {
  [
