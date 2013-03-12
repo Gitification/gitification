@@ -270,14 +270,14 @@ GET /applications/:appid/events
 < 200
 < Content-Type: application/json
 {
- [
-  {
-   "event_id":"id",
-   "type":"type",
-   "user":"user",
-   "issued":"date"
-  }
- ]
+	[
+		{
+			"event_id":<OID>,
+			"type":<EventType>,
+			"user":<OID>,
+			"issued":<Date>
+		}
+	]
 }
 +++++
 < 401
@@ -291,10 +291,10 @@ GET /applications/:appid/events/:eventid
 < 200
 < Content-Type: application/json
 {
- "event_id":"id",
- "type":"type",
- "user":"user",
- "issued":"date"
+	"event_id":<OID>,
+	"type":<EventType>,
+	"user":<OID>,
+	"issued":<Date>
 }
 +++++
 < 401
@@ -311,12 +311,19 @@ POST /applications/:appid/events
 > Authorization: $API_KEY
 > Content-Type: application/json
 {
- "type":"type",
- "user":"user"
+ "type":<EventType>,
+ "user":<OID>
 }
 < 201
 < Content-Type: application/json
-{ "status":"success", "message":"Successfully added" }
+{
+	"status":"success", 
+	"message":"Successfully added" 
+	"payload":
+	{
+		"event_id":<OID>
+	}
+}
 +++++
 < 401
 < Content-Type: application/json
@@ -343,8 +350,8 @@ GET /applications/:appid/types
 {
  [
   {
-   "type_id":"id",
-   "name":"name"
+   "type_id":<OID>,
+   "name":<String>
   }
  ]
 }
@@ -365,8 +372,8 @@ GET /applications/:appid/types/:type_id
 {
  [
   {
-   "type_id":"id",
-   "name":"name"
+   "type_id":<OID>,
+   "name":<String>
   }
  ]
 }
@@ -387,13 +394,20 @@ POST /applications/:appid/types
 {
  [
   {
-   "name":"name"
+   "name":<String>
   }
  ]
 }
 < 201
 < Content-Type: application/json
-{ "status":"success", "message":"Successfully added" }
+{ 
+	"status":"success", 
+	"message":"Successfully added",
+	"payload":
+	{
+		"event_type_id"=<OID>
+	}
+}
 +++++
 < 401
 < Content-Type: application/json
