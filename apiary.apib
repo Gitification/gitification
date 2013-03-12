@@ -430,7 +430,7 @@ GET /applications/{appid}/rules
 		{
 			"rule_id":<OID>,
 			"name":<String>,
-			"badge":<Badge>,
+			"badge":<OID>,
 			"event_types":
 			{
 				[
@@ -454,11 +454,11 @@ GET /applications/{appid}/rules/{ruleid}
 {
 	"rule_id":<OID>,
 	"name":<String>,
-	"badge":<Badge>,
+	"badge":<OID>,
 	"event_types":
 	{
 		[
-			"event_type":<EventType>,
+			"event_type":<OID>,
 			"threshold":<Integer>
 		]
 	}
@@ -478,11 +478,11 @@ POST /applications/{appid}/rules
 > Content-Type: application/json
 {
 	"name":<String>,
-	"badge":<Badge>,
+	"badge":<OID>,
 	"event_types":
 	{
 		[
-			"event_type":<EventType>,
+			"event_type":<OID>,
 			"threshold":<Integer>
 		]
 	}
@@ -508,11 +508,11 @@ PUT /applications/{appid}/rules/{ruleid}
 {
 	"rule_id":<OID>,
 	"name":<String>,
-	"badge":<Badge>,
+	"badge":<OID>,
 	"event_types":
 	{
 		[
-			"event_type":<EventType>,
+			"event_type":<OID>,
 			"threshold":<Integer>
 		]
 	}
