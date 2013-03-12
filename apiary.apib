@@ -273,7 +273,7 @@ GET /applications/:appid/events
 	[
 		{
 			"event_id":<OID>,
-			"type":<EventType>,
+			"type":<OID>,
 			"user":<OID>,
 			"issued":<Date>
 		}
@@ -311,7 +311,7 @@ POST /applications/:appid/events
 > Authorization: $API_KEY
 > Content-Type: application/json
 {
- "type":<EventType>,
+ "type":<OID>,
  "user":<OID>
 }
 < 201
@@ -338,12 +338,11 @@ Event Types
 
 All events that are recorded by the gamification API are associated with a type. The types can be defined by the application using the API with the related API calls. Then event types will be used in rules to define the conditions needed to obtain a badge.
 
-(Possible: list, specific, add)
 --
 
 
 Get the list of all types define for this application id.
-GET /applications/:appid/types
+GET /applications/:appid/events/types
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
@@ -362,7 +361,7 @@ GET /applications/:appid/types
 
 
 Get information about a specific type id
-GET /applications/:appid/types/:type_id
+GET /applications/:appid/events/types/:type_id
 > Timestamp: timestamp
 > Signature: signature
 > Signature-Method: HMAC-SHA1
@@ -388,7 +387,7 @@ GET /applications/:appid/types/:type_id
 
 
 Add a new event type in the application
-POST /applications/:appid/types
+POST /applications/:appid/events/types
 > Authorization: $API_KEY
 > Content-Type: application/json
 {
