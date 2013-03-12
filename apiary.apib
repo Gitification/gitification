@@ -3,15 +3,11 @@ HOST: http://random-gamification.com
 --- Gitification Gamification Provider ---
 ---
 API v0.0.1
-
-Star (*) indicates a mandatory request parameter.
 ---
 
 --
 Applications
-The following section relates to the application resource.
-
-(Possible: list, register)
+All operations related to the application resource are in this section..
 --
 Get applications registered on the server.
 
@@ -22,11 +18,12 @@ GET /applications
 < Content-Type: application/json
 {
 	[
+		"application":
 		{
 			"application_id":<OID>,
 			"site":<String>,
 			"callback":<String>,
-			"createdAt":<Date>,
+			"created_at":<Date>,
 			"admin":<String>,
 			"statistics":
 			{
@@ -93,184 +90,202 @@ POST /applications
 +++++
 < 409
 < Content-Type: application/json
-{ "status":"error", "message":"Application cannot be created." }
+{ "status":"error", "message":"Application cannot be created. Contact our helpdesk at http://random-gamification.com" }
 
 --
 Leaderboard
-(Possible: list)
-
-TODO
+All operations related to the leaderboard resource are in this section.
 --
 
-TODO
-GET /applications/:appid/leaderboard
-> Authorization: $API_KEY
-< 200
-< Content-Type: application/json
-{TODO}
-+++++
-< 401
-< Content-Type: text/plain
-{TODO}
-
---
-Users
-All operations related to the users management are in this section. You can add, update, get, list and deletes users. 
---
-Get the list of all users in the applications
-GET /applications/:appid/users
-> Authorization: $API_KEY
-< 200
-< Content-Type: application/json
-{
-  [
-    {
-    "user_id":<OID>,
-    "login":<string>,
-    "firstname":<string>,
-    "lastname":<string>,
-    "email":<string>
-    }
-  ]
-}
-+++++
-< 401
-< Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-
-Get the informations about a specific user
-GET /applications/:appid/users/:userid
-> Authorization: $API_KEY
-< 200
-< Content-Type: application/json
-{
- "user_id":<OID>,
- "login":<string>,
- "firstname":<string>,
- "lastname":<string>,
- "email":<string>
-}
-+++++
-< 401
-< Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-+++++
-< 404
-< Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
-
-
-Get all badges of a specific user
-GET /applications/:appid/users/:userid/badges
-> Authorization: $API_KEY
-< 200
-< Content-Type: application/json
-{
-  "user_id":<OID>, 
-  "badges_list":
-  [
-    {
-      "badge_name":<string>
-    }
-  ]
-}
-+++++
-< 401
-< Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-+++++
-< 404
-< Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
-
-Add a new user in the application
-POST /applications/:appid/users
-> Authorization: $API_KEY
-> Content-type: application/json
-{
- "user_id":<OID>,
- "login":<string>,
- "firstname":<string>,
- "lastname":<string>,
- "email":<string>
-}
-< 201
-< Content-Type: application/json
-{
- "user_id":<OID>,
- "login":<string>,
- "firstname":<string>,
- "lastname":<string>,
- "email":<string>
-}
-+++++
-< 401
-< Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-+++++
-< 405
-< Content-Type: text/plain
-{ "status":"error", "message":"Method Not Allowed" }
-
-Update the informations of a users
-PUT /applications/:appid/users/:userid
-> Authorization: $API_KEY
-{
- "user_id":<OID>,
- "login":<string>,
- "firstname":<string>,
- "lastname":<string>,
- "email":<string>
-}
-< 200
-< Content-Type: text/plain
-{ "status":"OK", "message":"User was updated" }
-+++++
-< 401
-< Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-+++++
-< 404
-< Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
-+++++
-< 405
-< Content-Type: text/plain
-{ "status":"error", "message":"Method Not Allowed" }
-
-Delete a user from the application
-DELETE /applications/:appid/users/:userid
-> Authorization: $API_KEY
-< 200
-< Content-Type: text/plain
-{ "status":"OK", "message":"User was deleted" }
-+++++
-< 401
-< Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-+++++
-< 404
-< Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
-
-
-
---
-Events
-
-All operations related to the event management are in this section. Everything that has to be monitored by the gamification platform is recorded as an event and has to be posted to the gamificatio API.
-
-(Possible: list, specific, add)
---
-
-
-Gets the list of all events registered on the gamification server for the appid.
-GET /applications/:appid/events
+Get leaderboard of the application
+GET /applications/{appid}/leaderboard
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
 	[
+		"user":
+		{
+			"position":<Integer>,
+			"user_id":<OID>,
+			"login":<String>,
+			"firstname":<String>,
+			"lastname":<String>,
+			"email":<String>,
+			"statistics":
+			{
+				"badge_count":<Integer>,
+			}
+		}
+	]
+}
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
+
+--
+Users
+All operations related to the user resource are in this section.
+--
+
+Get the list of all users in the GET
+GET application /applications/{appid}/users
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{
+	[
+		"user":
+		{
+			"user_id":<OID>,
+			"login":<String>,
+			"firstname":<String>,
+			"lastname":<String>,
+			"email":<String>
+		}
+	]
+}
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
+
+Get the informations about a specific user
+GET /applications/{appid}/users/{userid}
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{
+	"user_id":<OID>,
+	"login":<String>,
+	"firstname":<String>,
+	"lastname":<String>,
+	"email":<String>
+}
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Resource not found." }
+
+Get all badges of a specific user
+GET /applications/{appid}/users/{userid}/badges
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{
+	"user_id":<OID>, 
+	"badges_list":
+	[
+		{
+			"badge_name":<String>
+		}
+	]
+}
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Resource not found." }
+
+Add a new user in the application
+POST /applications/{appid}/users
+> Authorization: $API_KEY
+> Content-type: application/json
+{
+	"user_id":<OID>,
+	"login":<String>,
+	"firstname":<String>,
+	"lastname":<String>,
+	"email":<String>
+}
+< 201
+< Content-Type: application/json
+{
+	"status":"success",
+	"message":"Successfully added",
+	"payload":
+	{
+		"user_id":<OID>,
+		"login":<String>,
+		"firstname":<String>,
+		"lastname":<String>,
+		"email":<String>
+	}
+}
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
++++++
+< 405
+< Content-Type: application/json
+{ "status":"error", "message":"Method Not Allowed." }
+
+Update the informations of a users
+PUT /applications/{appid}/users/{userid}
+> Authorization: $API_KEY
+{
+	"user_id":<OID>,
+	"login":<String>,
+	"firstname":<String>,
+	"lastname":<String>,
+	"email":<String>
+}
+< 200
+< Content-Type: application/json
+{ "status":"success", "message":"User was updated." }
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Resource not found." }
++++++
+< 405
+< Content-Type: application/json
+{ "status":"error", "message":"Method Not Allowed." }
+
+Delete a user from the application
+DELETE /applications/{appid}/users/{userid}
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{ "status":"success", "message":"User was deleted." }
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Resource not found." }
+
+--
+Events
+
+All operations related to the event resource are in this section.
+
+Everything that has to be monitored by the gamification platform is recorded as an event and has to be posted to the gamification API.
+--
+
+Gets the list of all events registered on the gamification server for the appid.
+GET /applications/{appid}/events
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{
+	[
+		"event":
 		{
 			"event_id":<OID>,
 			"type":<OID>,
@@ -281,38 +296,36 @@ GET /applications/:appid/events
 }
 +++++
 < 401
-< Content-Type: text/plain
-{ "status":"error", "message":"Access denied" }
-
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
 
 Get detailed information about a specific event identified by eventid
-GET /applications/:appid/events/:eventid
+GET /applications/{appid}/events/{eventid}
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
 	"event_id":<OID>,
-	"type":<EventType>,
+	"type":<OID>,
 	"user":<OID>,
 	"issued":<Date>
 }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
+{ "status":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
-
+{ "status":"error", "message":"Resource not found." }
 
 Register a new event on the gamification platform for your application
-POST /applications/:appid/events
+POST /applications/{appid}/events
 > Authorization: $API_KEY
 > Content-Type: application/json
 {
- "type":<OID>,
- "user":<OID>
+	"type":<OID>,
+	"user":<OID>
 }
 < 201
 < Content-Type: application/json
@@ -327,41 +340,37 @@ POST /applications/:appid/events
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-
-
-
-
+{ "status":"error", "message":"Access denied." }
 
 --
 Event Types
 
-All events that are recorded by the gamification API are associated with a type. The types can be defined by the application using the API with the related API calls. Then event types will be used in rules to define the conditions needed to obtain a badge.
+All operations related to the event type resource are in this section.
 
+All events that are recorded by the gamification API are associated with a type. The types can be defined by the application using the API with the related API calls. Then event types will be used in rules to define the conditions needed to obtain a badge.
 --
 
-
 Get the list of all types define for this application id.
-GET /applications/:appid/events/types
+GET /applications/{appid}/events/types
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
- [
-  {
-   "type_id":<OID>,
-   "name":<String>
-  }
- ]
+	[
+		"type":
+		{
+			"type_id":<OID>,
+			"name":<String>
+		}
+	]
 }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-
+{ "status":"error", "message":"Access denied." }
 
 Get information about a specific type id
-GET /applications/:appid/events/types/:type_id
+GET /applications/{appid}/events/types/{typeid}
 > Timestamp: timestamp
 > Signature: signature
 > Signature-Method: HMAC-SHA1
@@ -369,55 +378,51 @@ GET /applications/:appid/events/types/:type_id
 < 200
 < Content-Type: application/json
 {
- [
-  {
-   "type_id":<OID>,
-   "name":<String>
-  }
- ]
+	"type_id":<OID>,
+	"name":<String>
 }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
+{ "status":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
-
+{ "status":"error", "message":"Resource not found." }
 
 Add a new event type in the application
-POST /applications/:appid/events/types
+POST /applications/{appid}/events/types
 > Authorization: $API_KEY
 > Content-Type: application/json
 {
- [
-  {
-   "name":<String>
-  }
- ]
+	[
+		"type":
+		{
+			"name":<String>
+		}
+	]
 }
 < 201
 < Content-Type: application/json
 { 
-	"status":"success", 
+	"status":"success",
 	"message":"Successfully added",
 	"payload":
 	{
-		"event_type_id"=<OID>
+		"event_type_id":<OID>
 	}
 }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
-
+{ "status":"error", "message":"Access denied." }
 
 --
 Rules
-A rule define when a badge should be granted to an user. A rule is defined by a list of EventType and threshold.
 
-(Possible: list, specific, add, modify, delete)
+All operations related to the rule resource are in this section.
+
+A rule define when a badge should be granted to an user. A rule is defined by a list of EventType and threshold.
 --
 Get rules defined for the given application
 
@@ -434,7 +439,7 @@ GET /applications/{appid}/rules
 			"event_types":
 			{
 				[
-					"event_type":<EventType>,
+					"event_type":<OID>,
 					"threshold":<Integer>
 				]
 			}
@@ -518,53 +523,55 @@ PUT /applications/{appid}/rules/{ruleid}
 	}
 }
 < 200
-< Content-Type: text/plain
-{ "status":"OK", "message":"Rule has been updated" }
+< Content-Type: application/json
+{ "status":"success", "message":"Rule has been updated." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
+{ "status":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
+{ "status":"error", "message":"Resource not found." }
 +++++
 < 405
-< Content-Type: text/plain
-{ "status":"error", "message":"Method Not Allowed" }
-
+< Content-Type: application/json
+{ "status":"error", "message":"Method Not Allowed." }
 
 Delete a rule from the given application
 DELETE /applications/{appid}/rules/{ruleid}
 > Authorization: $API_KEY
 < 200
-< Content-Type: text/plain
-{ "status":"OK", "message":"Rule has been deleted" }
+< Content-Type: application/json
+{ "status":"success", "message":"Rule has been deleted." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
+{ "status":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
+{ "status":"error", "message":"Resource not found." }
 
 --
 Badges
-A badge is given to an user for awesomeness
 
-(Possible: list, specific, add)
+All operations related to the badge resource are in this section.
+
+A badge is given to an user for awesomeness.
 --
 
-Get badges for the given application
+Get badges for the given application. *category_id is optional*.
 GET /applications/{appid}/badges
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
 	[
+		"badge":
 		{
 			"badge_id":<OID>,
+			"category_id":<OID>
 			"name":<String>,
 			"icon":<String>
 		}
@@ -575,13 +582,14 @@ GET /applications/{appid}/badges
 < Content-Type: application/json
 { "status":"error", "message":"Access denied." }
 
-Get information of the given badge
+Get information of the given badge. *category_id is optional*.
 GET /applications/{appid}/badges/{badgeid}
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
 {
 	"badge_id":<OID>,
+	"category_id":<OID>,
 	"name":<String>,
 	"icon":<String>
 }
@@ -594,13 +602,14 @@ GET /applications/{appid}/badges/{badgeid}
 < Content-Type: application/json
 { "status":"error", "message":"Access denied." }
 
-Add a new badge for the given application
+Add a new badge for the given application. *category_id is optional*.
 POST /applications/{appid}/badges
 > Authorization: $API_KEY
 > Content-Type: application/json
 {
 	"name":<String>,
-	"icon":<String>
+	"icon":<String>,
+	"category_id":<OID>
 }
 < 201
 < Content-Type: application/json
@@ -613,31 +622,124 @@ POST /applications/{appid}/badges
 	}
 }
 +++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
++++++
 < 409
 < Content-Type: application/json
-{ "status":"error", "message":"Rule cannot be created." }
+{ "status":"error", "message":"Badge cannot be created." }
 
-Update a badge
+Update a badge. *category_id is optional*.
 PUT /applications/{appid}/badges/{badgeid}
 > Authorization: $API_KEY
 {
 	"badge_id":<OID>,
+	"category_id":<OID>,
 	"name":<String>,
 	"icon":<String>
 }
 < 200
-< Content-Type: text/plain
-{ "status":"OK", "message":"Badge has been updated" }
+< Content-Type: application/json
+{ "status":"success", "message":"Badge has been updated." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied" }
+{ "status":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Ressource not found" }
+{ "status":"error", "message":"Resource not found." }
 +++++
 < 405
-< Content-Type: text/plain
-{ "status":"error", "message":"Method Not Allowed" }
+< Content-Type: application/json
+{ "status":"error", "message":"Method Not Allowed." }
 
+--
+Badge Categories
+
+All operations related to the badge category resource are in this section.
+
+A category groups badges together.
+--
+
+Get badge categories for the given application
+GET /applications/{appid}/badges/categories
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{
+	[
+		"category":
+		{
+			"category_id":<OID>,
+			"name":<String>
+		}
+	]
+}
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
+
+Get badge category for the given application
+GET /applications/{appid}/badges/categories
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{
+	"category_id":<OID>,
+	"name":<String>
+}
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
+
+Add a new badge category for the given application
+POST /applications/{appid}/badges/categories
+> Authorization: $API_KEY
+> Content-Type: application/json
+{
+	"name":<String>
+}
+< 200
+< Content-Type: application/json
+{
+	"status":"success", 
+	"message":"Category successfully registered.",
+	"payload":
+	{
+		"category_id":<OID>
+	}
+}
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
++++++
+< 409
+< Content-Type: application/json
+{ "status":"error", "message":"Badge category cannot be created." }
+
+Update a badge category
+PUT /applications/{appid}/badges/category/{categoryid}
+> Authorization: $API_KEY
+{
+	"name":<String>
+}
+< 200
+< Content-Type: application/json
+{ "status":"success", "message":"Badge category has been updated." }
++++++
+< 401
+< Content-Type: application/json
+{ "status":"error", "message":"Access denied." }
++++++
+< 404
+< Content-Type: application/json
+{ "status":"error", "message":"Resource not found." }
++++++
+< 405
+< Content-Type: application/json
+{ "status":"error", "message":"Method Not Allowed." }
