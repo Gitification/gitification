@@ -41,10 +41,10 @@ GET /applications
 +++++
 < 401
 < Content-Type: application/json
-{ "error":"error", "stats":"Access denied." }
+{ "status":"error", "message":"Access denied." }
 
 Get application information.
-GET /applications/:appid
+GET /applications/{appid}
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
