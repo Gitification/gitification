@@ -38,7 +38,7 @@ GET /applications
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Get application information.
 GET /applications/{appid}
@@ -62,11 +62,11 @@ GET /applications/{appid}
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Register a new application
 POST /applications
@@ -79,7 +79,7 @@ POST /applications
 < 201
 < Content-Type: application/json
 { 
-	"status":"success", 
+	"code":"success", 
 	"message":"Successfully registered.",
 	"payload":
 	{
@@ -90,7 +90,7 @@ POST /applications
 +++++
 < 409
 < Content-Type: application/json
-{ "status":"error", "message":"Application cannot be created. Contact our helpdesk at http://random-gamification.com" }
+{ "code":"error", "message":"Application cannot be created. Contact our helpdesk at http://random-gamification.com" }
 
 --
 Leaderboard
@@ -122,7 +122,7 @@ GET /applications/{appid}/leaderboard
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 --
 Users
@@ -149,7 +149,7 @@ GET /applications/{appid}/users
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Get the informations about a specific user
 GET /applications/{appid}/users/{userid}
@@ -166,11 +166,11 @@ GET /applications/{appid}/users/{userid}
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 
 Get all badges of a specific user
 GET /applications/{appid}/users/{userid}/badges
@@ -189,11 +189,11 @@ GET /applications/{appid}/users/{userid}/badges
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 
 Add a new user in the application
 POST /applications/{appid}/users
@@ -209,7 +209,7 @@ POST /applications/{appid}/users
 < 201
 < Content-Type: application/json
 {
-	"status":"success",
+	"code":"success",
 	"message":"Successfully added",
 	"payload":
 	{
@@ -223,11 +223,11 @@ POST /applications/{appid}/users
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 405
 < Content-Type: application/json
-{ "status":"error", "message":"Method Not Allowed." }
+{ "code":"error", "message":"Method Not Allowed." }
 
 Update the informations of a users
 PUT /applications/{appid}/users/{userid}
@@ -241,34 +241,34 @@ PUT /applications/{appid}/users/{userid}
 }
 < 200
 < Content-Type: application/json
-{ "status":"success", "message":"User was updated." }
+{ "code":"success", "message":"User was updated." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 +++++
 < 405
 < Content-Type: application/json
-{ "status":"error", "message":"Method Not Allowed." }
+{ "code":"error", "message":"Method Not Allowed." }
 
 Delete a user from the application
 DELETE /applications/{appid}/users/{userid}
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
-{ "status":"success", "message":"User was deleted." }
+{ "code":"success", "message":"User was deleted." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 
 --
 Events
@@ -297,7 +297,7 @@ GET /applications/{appid}/events
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Get detailed information about a specific event identified by eventid
 GET /applications/{appid}/events/{eventid}
@@ -313,11 +313,11 @@ GET /applications/{appid}/events/{eventid}
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 
 Register a new event on the gamification platform for your application
 POST /applications/{appid}/events
@@ -330,7 +330,7 @@ POST /applications/{appid}/events
 < 201
 < Content-Type: application/json
 {
-	"status":"success", 
+	"code":"success", 
 	"message":"Successfully added" 
 	"payload":
 	{
@@ -340,7 +340,7 @@ POST /applications/{appid}/events
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 --
 Event Types
@@ -367,7 +367,7 @@ GET /applications/{appid}/events/types
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Get information about a specific type id
 GET /applications/{appid}/events/types/{typeid}
@@ -384,11 +384,11 @@ GET /applications/{appid}/events/types/{typeid}
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 
 Add a new event type in the application
 POST /applications/{appid}/events/types
@@ -405,7 +405,7 @@ POST /applications/{appid}/events/types
 < 201
 < Content-Type: application/json
 { 
-	"status":"success",
+	"code":"success",
 	"message":"Successfully added",
 	"payload":
 	{
@@ -415,7 +415,7 @@ POST /applications/{appid}/events/types
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 --
 Rules
@@ -449,7 +449,7 @@ GET /applications/{appid}/rules
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Get rule information
 GET /applications/{appid}/rules/{ruleid}
@@ -471,11 +471,11 @@ GET /applications/{appid}/rules/{ruleid}
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Add a new rule for the given application
 POST /applications/{appid}/rules
@@ -495,7 +495,7 @@ POST /applications/{appid}/rules
 < 201
 < Content-Type: application/json
 { 
-	"status":"success", 
+	"code":"success", 
 	"message":"Rule successfully registered.",
 	"payload":
 	{
@@ -505,7 +505,7 @@ POST /applications/{appid}/rules
 +++++
 < 409
 < Content-Type: application/json
-{ "status":"error", "message":"Rule cannot be created." }
+{ "code":"error", "message":"Rule cannot be created." }
 
 Update the information of the given rule
 PUT /applications/{appid}/rules/{ruleid}
@@ -524,34 +524,34 @@ PUT /applications/{appid}/rules/{ruleid}
 }
 < 200
 < Content-Type: application/json
-{ "status":"success", "message":"Rule has been updated." }
+{ "code":"success", "message":"Rule has been updated." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 +++++
 < 405
 < Content-Type: application/json
-{ "status":"error", "message":"Method Not Allowed." }
+{ "code":"error", "message":"Method Not Allowed." }
 
 Delete a rule from the given application
 DELETE /applications/{appid}/rules/{ruleid}
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
-{ "status":"success", "message":"Rule has been deleted." }
+{ "code":"success", "message":"Rule has been deleted." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 
 --
 Badges
@@ -580,7 +580,7 @@ GET /applications/{appid}/badges
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Get information of the given badge. *category_id is optional*.
 GET /applications/{appid}/badges/{badgeid}
@@ -596,11 +596,11 @@ GET /applications/{appid}/badges/{badgeid}
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Add a new badge for the given application. *category_id is optional*.
 POST /applications/{appid}/badges
@@ -614,7 +614,7 @@ POST /applications/{appid}/badges
 < 201
 < Content-Type: application/json
 { 
-	"status":"success", 
+	"code":"success", 
 	"message":"Badge successfully registered.",
 	"payload":
 	{
@@ -624,11 +624,11 @@ POST /applications/{appid}/badges
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 409
 < Content-Type: application/json
-{ "status":"error", "message":"Badge cannot be created." }
+{ "code":"error", "message":"Badge cannot be created." }
 
 Update a badge. *category_id is optional*.
 PUT /applications/{appid}/badges/{badgeid}
@@ -641,19 +641,19 @@ PUT /applications/{appid}/badges/{badgeid}
 }
 < 200
 < Content-Type: application/json
-{ "status":"success", "message":"Badge has been updated." }
+{ "code":"success", "message":"Badge has been updated." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 +++++
 < 405
 < Content-Type: application/json
-{ "status":"error", "message":"Method Not Allowed." }
+{ "code":"error", "message":"Method Not Allowed." }
 
 --
 Badge Categories
@@ -680,7 +680,7 @@ GET /applications/{appid}/badges/categories
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Get badge category for the given application
 GET /applications/{appid}/badges/categories
@@ -694,7 +694,7 @@ GET /applications/{appid}/badges/categories
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 
 Add a new badge category for the given application
 POST /applications/{appid}/badges/categories
@@ -706,7 +706,7 @@ POST /applications/{appid}/badges/categories
 < 200
 < Content-Type: application/json
 {
-	"status":"success", 
+	"code":"success", 
 	"message":"Category successfully registered.",
 	"payload":
 	{
@@ -716,11 +716,11 @@ POST /applications/{appid}/badges/categories
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 409
 < Content-Type: application/json
-{ "status":"error", "message":"Badge category cannot be created." }
+{ "code":"error", "message":"Badge category cannot be created." }
 
 Update a badge category
 PUT /applications/{appid}/badges/category/{categoryid}
@@ -730,16 +730,16 @@ PUT /applications/{appid}/badges/category/{categoryid}
 }
 < 200
 < Content-Type: application/json
-{ "status":"success", "message":"Badge category has been updated." }
+{ "code":"success", "message":"Badge category has been updated." }
 +++++
 < 401
 < Content-Type: application/json
-{ "status":"error", "message":"Access denied." }
+{ "code":"error", "message":"Access denied." }
 +++++
 < 404
 < Content-Type: application/json
-{ "status":"error", "message":"Resource not found." }
+{ "code":"error", "message":"Resource not found." }
 +++++
 < 405
 < Content-Type: application/json
-{ "status":"error", "message":"Method Not Allowed." }
+{ "code":"error", "message":"Method Not Allowed." }
