@@ -11,3 +11,15 @@ Download and install [node.js](http://nodejs.org/download/)
 
     npm install
     node server.js
+
+
+For those who manually compiled node.js and getting the following error 
+
+    gyp ERR! configure error 
+    gyp ERR! stack Error: "pre" versions of node cannot be installed, use the --nodedir flag instead
+
+Run the installation with the --nodedir option:
+
+    npm install --nodedir /path/to/node/source
+
+
