@@ -20,6 +20,6 @@ For those who manually compiled node.js and getting the following error
 
 Run the installation with the --nodedir option:
 
-    npm install --nodedir /path/to/node/source
+    npm install --nodedir=/path/to/node/source
 
 
