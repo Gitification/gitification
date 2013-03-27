@@ -1,0 +1,9 @@
+[submodule "docs"]
+	path = docs
+	url = git@github.com:Gitification/gitification-docs.git
+[submodule "server"]
+	path = server
+	url = git@github.com:Gitification/gitification-server.git
+[submodule "client"]
+	path = client
+	url = git@github.com:Gitification/gitification-client.git
