@@ -20,7 +20,6 @@ GET /applications
 < Content-Type: application/json
 {
 	[
-		"application":
 		{
 			"application_id":<OID>,
 			"site":<String>,
@@ -106,7 +105,6 @@ GET /applications/{appid}/leaderboard
 < Content-Type: application/json
 {
 	[
-		"user":
 		{
 			"position":<Integer>,
 			"user_id":<OID>,
@@ -138,7 +136,6 @@ GET /applications/{appid}/users
 < Content-Type: application/json
 {
 	[
-		"user":
 		{
 			"user_id":<OID>,
 			"login":<String>,
@@ -287,7 +284,6 @@ GET /applications/{appid}/events
 < Content-Type: application/json
 {
 	[
-		"event":
 		{
 			"event_id":<OID>,
 			"type":<OID>,
@@ -359,7 +355,6 @@ GET /applications/{appid}/events/types
 < Content-Type: application/json
 {
 	[
-		"type":
 		{
 			"type_id":<OID>,
 			"name":<String>
@@ -398,7 +393,6 @@ POST /applications/{appid}/events/types
 > Content-Type: application/json
 {
 	[
-		"type":
 		{
 			"name":<String>
 		}
@@ -463,12 +457,13 @@ GET /applications/{appid}/rules/{ruleid}
 	"name":<String>,
 	"badge":<OID>,
 	"event_types":
-	{
-		[
+	[
+		{
 			"event_type":<OID>,
 			"threshold":<Integer>
-		]
-	}
+		}
+	]
+	
 }
 +++++
 < 404
@@ -570,7 +565,6 @@ GET /applications/{appid}/badges
 < Content-Type: application/json
 {
 	[
-		"badge":
 		{
 			"badge_id":<OID>,
 			"category_id":<OID>
@@ -672,7 +666,6 @@ GET /applications/{appid}/badges/categories
 < Content-Type: application/json
 {
 	[
-		"category":
 		{
 			"category_id":<OID>,
 			"name":<String>
