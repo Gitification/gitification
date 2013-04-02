@@ -20,7 +20,6 @@ GET /applications
 < Content-Type: application/json
 {
 	[
-		"application":
 		{
 			"application_id":<OID>,
 			"site":<String>,
@@ -106,7 +105,6 @@ GET /applications/{appid}/leaderboard
 < Content-Type: application/json
 {
 	[
-		"user":
 		{
 			"position":<Integer>,
 			"user_id":<OID>,
@@ -138,7 +136,6 @@ GET /applications/{appid}/users
 < Content-Type: application/json
 {
 	[
-		"user":
 		{
 			"user_id":<OID>,
 			"login":<String>,
@@ -287,7 +284,6 @@ GET /applications/{appid}/events
 < Content-Type: application/json
 {
 	[
-		"event":
 		{
 			"event_id":<OID>,
 			"type":<OID>,
@@ -359,7 +355,6 @@ GET /applications/{appid}/events/types
 < Content-Type: application/json
 {
 	[
-		"type":
 		{
 			"type_id":<OID>,
 			"name":<String>
@@ -398,7 +393,6 @@ POST /applications/{appid}/events/types
 > Content-Type: application/json
 {
 	[
-		"type":
 		{
 			"name":<String>
 		}
@@ -426,8 +420,8 @@ All operations related to the rule resource are in this section.
 
 A rule define when a badge should be granted to an user. A rule is defined by a list of EventType and threshold.
 --
-Get rules defined for the given application
 
+Get rules defined for the given application
 GET /applications/{appid}/rules
 > Authorization: $API_KEY
 < 200
@@ -439,12 +433,12 @@ GET /applications/{appid}/rules
 			"name":<String>,
 			"badge":<OID>,
 			"event_types":
-			{
-				[
-					"event_type":<OID>,
-					"threshold":<Integer>
-				]
-			}
+			[
+				{
+					event_type:<OID>,
+					threshold:<Integer>
+				}
+			]
 		}
 	]
 }
@@ -463,21 +457,22 @@ GET /applications/{appid}/rules/{ruleid}
 	"name":<String>,
 	"badge":<OID>,
 	"event_types":
-	{
-		[
+	[
+		{
 			"event_type":<OID>,
 			"threshold":<Integer>
-		]
-	}
+		}
+	]
 }
-+++++
-< 404
-< Content-Type: application/json
-{ "code":"error", "message":"Resource not found." }
 +++++
 < 401
 < Content-Type: application/json
 { "code":"error", "message":"Access denied." }
++++++
+< 404
+< Content-Type: application/json
+{ "code":"error", "message":"Resource not found." }
+
 
 Add a new rule for the given application
 POST /applications/{appid}/rules
@@ -487,12 +482,10 @@ POST /applications/{appid}/rules
 	"name":<String>,
 	"badge":<OID>,
 	"event_types":
-	{
-		[
-			"event_type":<OID>,
-			"threshold":<Integer>
-		]
-	}
+	[
+		"event_type":<OID>,
+		"threshold":<Integer>
+	]
 }
 < 201
 < Content-Type: application/json
@@ -517,12 +510,10 @@ PUT /applications/{appid}/rules/{ruleid}
 	"name":<String>,
 	"badge":<OID>,
 	"event_types":
-	{
-		[
-			"event_type":<OID>,
-			"threshold":<Integer>
-		]
-	}
+	[
+		"event_type":<OID>,
+		"threshold":<Integer>
+	]
 }
 < 200
 < Content-Type: application/json
@@ -570,7 +561,6 @@ GET /applications/{appid}/badges
 < Content-Type: application/json
 {
 	[
-		"badge":
 		{
 			"badge_id":<OID>,
 			"category_id":<OID>
@@ -620,7 +610,7 @@ POST /applications/{appid}/badges
 	"message":"Badge successfully registered.",
 	"payload":
 	{
-		"badge_id":<OID>,
+		"badge_id":<OID>
 	}
 }
 +++++
@@ -637,7 +627,7 @@ PUT /applications/{appid}/badges/{badgeid}
 > Authorization: $API_KEY
 {
 	"badge_id":<OID>,
-	"category_id":<OID>,
+	"category_id":<OID>, 
 	"name":<String>,
 	"icon":<String>
 }
@@ -672,7 +662,6 @@ GET /applications/{appid}/badges/categories
 < Content-Type: application/json
 {
 	[
-		"category":
 		{
 			"category_id":<OID>,
 			"name":<String>
@@ -699,7 +688,7 @@ GET /applications/{appid}/badges/categories
 { "code":"error", "message":"Access denied." }
 
 Add a new badge category for the given application
-POST /applications/{appid}/badges/categories
+POST /applications/{appid}/badges/categories/{categoryid}
 > Authorization: $API_KEY
 > Content-Type: application/json
 {
