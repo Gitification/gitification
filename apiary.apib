@@ -677,8 +677,22 @@ GET /applications/{appid}/badges/categories
 < Content-Type: application/json
 { "code":"error", "message":"Access denied." }
 
+Get badge category for the given application
+GET /applications/{appid}/badges/categories
+> Authorization: $API_KEY
+< 200
+< Content-Type: application/json
+{
+	"category_id":<OID>,
+	"name":<String>
+}
++++++
+< 401
+< Content-Type: application/json
+{ "code":"error", "message":"Access denied." }
+
 Add a new badge category for the given application
-POST /applications/{appid}/badges/categories
+POST /applications/{appid}/badges/categories/{categoryid}
 > Authorization: $API_KEY
 > Content-Type: application/json
 {
