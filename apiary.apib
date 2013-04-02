@@ -420,8 +420,8 @@ All operations related to the rule resource are in this section.
 
 A rule define when a badge should be granted to an user. A rule is defined by a list of EventType and threshold.
 --
-Get rules defined for the given application
 
+Get rules defined for the given application
 GET /applications/{appid}/rules
 > Authorization: $API_KEY
 < 200
@@ -463,16 +463,16 @@ GET /applications/{appid}/rules/{ruleid}
 			"threshold":<Integer>
 		}
 	]
-	
 }
-+++++
-< 404
-< Content-Type: application/json
-{ "code":"error", "message":"Resource not found." }
 +++++
 < 401
 < Content-Type: application/json
 { "code":"error", "message":"Access denied." }
++++++
+< 404
+< Content-Type: application/json
+{ "code":"error", "message":"Resource not found." }
+
 
 Add a new rule for the given application
 POST /applications/{appid}/rules
