@@ -79,8 +79,8 @@ POST /applications
 }
 < 201
 < Content-Type: application/json
-{ 
-	"code":"success", 
+{
+	"code":"success",
 	"message":"Successfully registered.",
 	"payload":
 	{
@@ -177,11 +177,14 @@ GET /applications/{appid}/users/{userid}/badges
 < 200
 < Content-Type: application/json
 {
-	"user_id":<OID>, 
+	"user_id":<OID>,
 	"badges_list":
 	[
 		{
-			"badge_name":<String>
+			"badge_id":<OID>,
+			"category_id":<OID>
+			"name":<String>,
+			"icon":<String>
 		}
 	]
 }
@@ -318,13 +321,14 @@ POST /applications/{appid}/events
 > Content-Type: application/json
 {
 	"type":<OID>,
-	"user":<OID>
+	"user":<OID>,
+	"issued":<Date>
 }
 < 201
 < Content-Type: application/json
 {
-	"code":"success", 
-	"message":"Successfully added" 
+	"code":"success",
+	"message":"Successfully added"
 	"payload":
 	{
 		"event_id":<OID>
@@ -395,7 +399,7 @@ POST /applications/{appid}/events/types
 }
 < 201
 < Content-Type: application/json
-{ 
+{
 	"code":"success",
 	"message":"Successfully added",
 	"payload":
@@ -508,8 +512,8 @@ POST /applications/{appid}/rules
 }
 < 201
 < Content-Type: application/json
-{ 
-	"code":"success", 
+{
+	"code":"success",
 	"message":"Rule successfully registered.",
 	"payload":
 	{
@@ -624,8 +628,8 @@ POST /applications/{appid}/badges
 }
 < 201
 < Content-Type: application/json
-{ 
-	"code":"success", 
+{
+	"code":"success",
 	"message":"Badge successfully registered.",
 	"payload":
 	{
@@ -646,7 +650,7 @@ PUT /applications/{appid}/badges/{badgeid}
 > Authorization: $API_KEY
 {
 	"badge_id":<OID>,
-	"category_id":<OID>, 
+	"category_id":<OID>,
 	"name":<String>,
 	"icon":<String>
 }
@@ -693,7 +697,7 @@ GET /applications/{appid}/badges/categories
 { "code":"error", "message":"Access denied." }
 
 Get badge category for the given application
-GET /applications/{appid}/badges/categories
+GET /applications/{appid}/badges/categories/{categoryid}
 > Authorization: $API_KEY
 < 200
 < Content-Type: application/json
@@ -716,7 +720,7 @@ POST /applications/{appid}/badges/categories/{categoryid}
 < 200
 < Content-Type: application/json
 {
-	"code":"success", 
+	"code":"success",
 	"message":"Category successfully registered.",
 	"payload":
 	{
