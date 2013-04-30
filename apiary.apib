@@ -400,13 +400,37 @@ POST /applications/{appid}/events/types
 	"message":"Successfully added",
 	"payload":
 	{
-		"event_type_id":<OID>
+		"type_id":<OID>
 	}
 }
 +++++
 < 401
 < Content-Type: application/json
 { "code":"error", "message":"Access denied." }
+
+Update the information of the given event type
+PUT /applications/{appid}/events/types/{typeid}
+> Authorization: $API_KEY
+{
+	"type_id":<OID>,
+	"name":<String>
+}
+< 200
+< Content-Type: application/json
+{ "code":"success", "message":"Event type has been updated." }
++++++
+< 401
+< Content-Type: application/json
+{ "code":"error", "message":"Access denied." }
++++++
+< 404
+< Content-Type: application/json
+{ "code":"error", "message":"Resource not found." }
++++++
+< 405
+< Content-Type: application/json
+{ "code":"error", "message":"Method Not Allowed." }
+
 
 --
 Rules
