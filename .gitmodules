@@ -7,3 +7,6 @@
 [submodule "client"]
 	path = client
 	url = git@github.com:Gitification/gitification-client.git
+[submodule "java-bench"]
+	path = java-bench
+	url = git@github.com:Gitification/gitification-javabench.git
