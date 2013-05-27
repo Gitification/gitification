@@ -11,7 +11,7 @@ Our gamification platform is composed of four components, available as git submo
 * *gitification-server* : the server components (REST API + database connections)
 * *gitification-client* : the client front end to manage the users of the gamification application
 * *gitification-javabench* : a Java client with benchmarks for our REST API
-* *gitification-doc* : documentation of the project
+* *gitification-docs* : documentation of the project
 
 
 ### Documentation
