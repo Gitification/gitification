@@ -6,20 +6,9 @@ You can customize the events you want to monitore and for each type of event you
 
 This application uses a Javascript stack and has been developed for the lesson OSF (OpenSource Frameworks) during our Master studies at HES-SO.
 
-## Install
-Download and install [node.js](http://nodejs.org/download/)
 
-    npm install
-    node server.js
-
-
-For those who manually compiled node.js and getting the following error 
-
-    gyp ERR! configure error 
-    gyp ERR! stack Error: "pre" versions of node cannot be installed, use the --nodedir flag instead
-
-Run the installation with the --nodedir option:
-
-    npm install --nodedir=/path/to/node/source
-
-
+Our gamification platform is composed of four components, available as git submodules:
+* *gitification-server* : the server components (REST API + database connections)
+* *gitification-client* : the client front end to manage the users of the gamification application
+* *gitification-javabench* : some JAVA benchmarks for our REST API
+* *gitification-doc* : documentation of the project
