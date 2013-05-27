@@ -10,5 +10,9 @@ This application uses a Javascript stack and has been developed for the lesson O
 Our gamification platform is composed of four components, available as git submodules:
 * *gitification-server* : the server components (REST API + database connections)
 * *gitification-client* : the client front end to manage the users of the gamification application
-* *gitification-javabench* : some JAVA benchmarks for our REST API
+* *gitification-javabench* : a Java client with benchmarks for our REST API
 * *gitification-doc* : documentation of the project
+
+
+### Documentation
+The documentation is hosted on the wiki: https://github.com/Gitification/gitification/wiki
